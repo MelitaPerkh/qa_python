@@ -25,3 +25,6 @@ test_delete_book_from_favorites_true(self)
 
 тест для метода get_list_of_favorites_books:
 test_get_list_of_favorites_books_true(self)
+
+тест для метода get_books_genre:
+test_get_books_genre(self)

@@ -66,28 +66,18 @@ class TestBooksCollector:
 
     def test_add_book_in_favorites_true(self):
         collector = BooksCollector()
-        collector.add_new_book('Улица')
-        collector.set_book_genre('Улица', 'Детективы')
         collector.add_new_book('Ночь')
         collector.set_book_genre('Ночь', 'Ужасы')
-        collector.add_new_book('Алиса в стране чудес')
-        collector.set_book_genre('Алиса в стране чудес', 'Мультфильмы')
-        collector.add_new_book('Стена')
-        collector.set_book_genre('Стена', 'Фантастика')
         collector.add_book_in_favorites('Ночь')
         assert collector.favorites[0] == 'Ночь' and len( collector.favorites) == 1
 
 
     def test_delete_book_from_favorites_true(self):
         collector = BooksCollector()
-        collector.add_new_book('Улица')
-        collector.set_book_genre('Улица', 'Детективы')
         collector.add_new_book('Ночь')
         collector.set_book_genre('Ночь', 'Ужасы')
         collector.add_new_book('Алиса в стране чудес')
         collector.set_book_genre('Алиса в стране чудес', 'Мультфильмы')
-        collector.add_new_book('Стена')
-        collector.set_book_genre('Стена', 'Фантастика')
         collector.add_book_in_favorites('Ночь')
         collector.add_book_in_favorites('Алиса в стране чудес')
         collector.delete_book_from_favorites('Ночь')
@@ -96,14 +86,22 @@ class TestBooksCollector:
 
     def test_get_list_of_favorites_books_true(self):
          collector = BooksCollector()
-         collector.add_new_book('Улица')
-         collector.set_book_genre('Улица', 'Детективы')
          collector.add_new_book('Ночь')
          collector.set_book_genre('Ночь', 'Ужасы')
          collector.add_new_book('Алиса в стране чудес')
          collector.set_book_genre('Алиса в стране чудес', 'Мультфильмы')
-         collector.add_new_book('Стена')
-         collector.set_book_genre('Стена', 'Фантастика')
          collector.add_book_in_favorites('Ночь')
          collector.add_book_in_favorites('Алиса в стране чудес')
          assert 'Ночь' in collector.get_list_of_favorites_books() and 'Алиса в стране чудес' in collector.get_list_of_favorites_books() and len(collector.get_list_of_favorites_books()) == 2 
+
+         
+         
+    def test_get_books_genre(self):
+         collector = BooksCollector()
+         collector.add_new_book('Ночь')
+         collector.set_book_genre('Ночь', 'Ужасы')
+         collector.add_new_book('Алиса в стране чудес')
+         collector.set_book_genre('Алиса в стране чудес', 'Мультфильмы')
+         collector.add_book_in_favorites('Ночь')
+         collector.add_book_in_favorites('Алиса в стране чудес')
+         assert collector.get_books_genre()['Ночь'] == 'Ужасы' and collector.get_books_genre()['Алиса в стране чудес'] == 'Мультфильмы' and len(collector.get_books_genre())==2
